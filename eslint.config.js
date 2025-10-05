@@ -4,8 +4,10 @@ import reactHooks from "eslint-plugin-react-hooks";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import importPlugin from "eslint-plugin-import";
 import globals from "globals";
+import { defineConfig, globalIgnores } from "eslint/config";
 
-export default [
+export default defineConfig([
+  globalIgnores(["dist"]),
   js.configs.recommended,
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
@@ -38,4 +40,4 @@ export default [
       react: { version: "detect" },
     },
   },
-];
+]);
