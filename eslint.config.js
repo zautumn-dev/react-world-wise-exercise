@@ -13,7 +13,10 @@ import reactRefresh from "eslint-plugin-react-refresh";
 export default defineConfig([
   globalIgnores(["dist"]),
   js.configs.recommended,
-  reactRefresh.configs.next,
+  {
+    files: ["src/**/*.{js,jsx,ts,tsx}"],
+    ...reactRefresh.configs.next,
+  },
   {
     files: ["src/**/*.{js,jsx,ts,tsx}"],
 
