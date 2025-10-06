@@ -6,16 +6,44 @@ import AppLayout from './pages/appLayout.jsx'
 import Homepage from './pages/Homepage.jsx'
 import Pricing from './pages/Pricing.jsx'
 import Login from './pages/Login.jsx'
+import CityList from './components/cityList/index.jsx'
+import { useEffect, useState } from 'react'
+import { asyncHandler } from './lib/utils.js'
+import CountryList from './components/countryList/index.jsx'
+
+console.log(import.meta.env.DEV, import.meta.env.VITE_BASE_URL)
 
 function App() {
+  const [cities, setCities] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    setIsLoading(true)
+    async function fetchCityList() {
+      const [err, response] = await asyncHandler(fetch(`${import.meta.env.VITE_BASE_URL}/cities`))
+
+      setIsLoading(false)
+
+      if (err) {
+        return console.error(err.message)
+      }
+
+      const result = await response.json()
+      setCities(result)
+    }
+
+    fetchCityList()
+  }, [])
+
+  useEffect(() => {})
   return (
     <BrowserRouter>
       <Routes>
         <Route index element={<Homepage />} />
         <Route path="app" element={<AppLayout />}>
-          <Route index path="cities"></Route>
-          <Route path="cities" element={<p>cities list</p>} />
-          <Route path="countries" element={<p>countries list</p>} />
+          <Route index element={<CityList isLoading={isLoading} cityList={cities} />}></Route>
+          <Route path="cities" element={<CityList isLoading={isLoading} cityList={cities} />} />
+          <Route path="countries" element={<CountryList isLoading={isLoading} cityList={cities} />} />
           <Route path="add" element={<p>add</p>} />
         </Route>
         <Route path="dashboard" element={<Dashboard />} />
