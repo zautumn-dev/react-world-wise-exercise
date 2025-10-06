@@ -59,15 +59,25 @@ export default defineConfig([
     },
     rules: {
       ...react.configs.recommended.rules,
-      'react/react-in-jsx-scope': 'off', // Vite + React 不需要 import React
-      // 配置单引号校验
-      quotes: {
-        avoidEscape: true,
-        allowTemplateLiterals: true,
-      },
     },
     settings: {
       react: { version: 'detect' },
+    },
+  },
+
+  {
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    rules: {
+      'no-unused-vars': 'warn',
+      'react/react-in-jsx-scope': 'off', // Vite + React 不需要 import React
+      // 配置单引号校验
+      quotes: [
+        'error',
+        'single',
+        {
+          avoidEscape: true,
+        },
+      ],
     },
   },
 ])
