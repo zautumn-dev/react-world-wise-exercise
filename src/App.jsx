@@ -1,4 +1,4 @@
-import { BrowserRouter, Link, Route, Routes } from 'react-router'
+import { BrowserRouter, Link, Navigate, Route, Routes } from 'react-router'
 import Dashboard from './pages/dashboard.jsx'
 import Product from './pages/product.jsx'
 import NotFound from './pages/notFound.jsx'
@@ -10,6 +10,8 @@ import CityList from './components/cityList/index.jsx'
 import { useEffect, useState } from 'react'
 import { asyncHandler } from './lib/utils.js'
 import CountryList from './components/countryList/index.jsx'
+import City from './components/City.jsx'
+import Form from './components/Form.jsx'
 
 console.log(import.meta.env.DEV, import.meta.env.VITE_BASE_URL)
 
@@ -41,10 +43,13 @@ function App() {
       <Routes>
         <Route index element={<Homepage />} />
         <Route path="app" element={<AppLayout />}>
-          <Route index element={<CityList isLoading={isLoading} cityList={cities} />}></Route>
+          {/* 实现重定向功能 <Navigate> */}
+          <Route index element={<Navigate to="cities" />}></Route>
           <Route path="cities" element={<CityList isLoading={isLoading} cityList={cities} />} />
+          <Route path="cities/:id" element={<City />} />
+
           <Route path="countries" element={<CountryList isLoading={isLoading} cityList={cities} />} />
-          <Route path="add" element={<p>add</p>} />
+          <Route path="add" element={<Form />} />
         </Route>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="product" element={<Product />} />
