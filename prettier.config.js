@@ -16,7 +16,7 @@ export default {
   // 对象字面量是否加空格：{ foo: bar }
   bracketSpacing: true,
   // JSX > 把 `>` 放在最后一行还是下一行（prettier v2+ 用 bracketSameLine）
-  bracketSameLine: false,
+  bracketSameLine: true,
   // 箭头函数参数是否总是加圆括号
   arrowParens: 'avoid',
   // 换行符风格

@@ -6,12 +6,11 @@ import Logo from '../Logo/index.jsx'
 function PageNav() {
   return (
     <nav className={styles.nav}>
-      <Link to="/">
-        <Logo />
-      </Link>
+      <Logo />
 
       <ul>
         <li>
+          {/* to 中不从/开始就会拼接到当前路径后边*/}
           <NavLink to="/pricing">PRICING</NavLink>
         </li>
         <li>

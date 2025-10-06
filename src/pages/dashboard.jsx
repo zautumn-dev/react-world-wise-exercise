@@ -1,7 +1,7 @@
 import React from 'react'
 import AppNav from '../components/appNav/index.jsx'
 
-function Dashboard(props) {
+function Dashboard() {
   return (
     <div>
       <AppNav />
