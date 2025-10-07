@@ -23,6 +23,29 @@ export function CitiesProvider({ children }) {
 
       setCurrentCity(await response.json())
     },
+
+    // add city
+    fetchAddCity: async function (city) {
+      setIsLoading(true)
+      const [err, response] = await asyncHandler(
+        fetch(`${import.meta.env.VITE_BASE_URL}/cities`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(city),
+        }),
+      )
+
+      setIsLoading(false)
+      if (err) {
+        return console.error(err.message)
+      }
+
+      const newCity = await response.json()
+
+      setCities(cities => [...cities, newCity])
+    },
   }
 
   // cities
