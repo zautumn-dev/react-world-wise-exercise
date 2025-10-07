@@ -3,8 +3,11 @@ import styles from './CountryList.module.css'
 import Spinner from '../Spinner.jsx'
 import CountryItem from './components/CountryItem.jsx'
 import Message from '../Message.jsx'
+import { useCitiesContext } from '../../context/CitiesContext.jsx'
 
-function CountryList({ isLoading, cityList }) {
+function CountryList() {
+  const { isLoading, cities: cityList } = useCitiesContext()
+
   if (isLoading) return <Spinner />
 
   if (!cityList.length) return <Message message="Add your first city by clicking on a city on the map" />
@@ -16,8 +19,6 @@ function CountryList({ isLoading, cityList }) {
         : [...acc, { country: city.country, emoji: city.emoji }],
     [],
   )
-
-  console.log(countries)
 
   return (
     <ul className={styles.countryList}>
