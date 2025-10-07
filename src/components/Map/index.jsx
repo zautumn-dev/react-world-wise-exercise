@@ -56,6 +56,14 @@ function Index() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {/*定位位置*/}
+        {geoLocationPosition && (
+          <Marker position={map} icon={customIcon}>
+            <Popup>
+              <span>当前所在位置</span>
+            </Popup>
+          </Marker>
+        )}
         {cities.map(city => (
           <Marker position={[city.position.lat, city.position.lng]} icon={customIcon} key={city.id}>
             <Popup>
