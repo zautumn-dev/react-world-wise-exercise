@@ -8,7 +8,7 @@ import { useCitiesContext } from '../../../context/CitiesContext.jsx'
 function CityItem({ city }) {
   // eslint-disable-next-line react/prop-types
   const { cityName, emoji, date, id, position } = city
-  console.log(position)
+
   const { currentCity } = useCitiesContext()
 
   return (

@@ -14,7 +14,7 @@ import City from './components/City.jsx'
 import Form from './components/Form.jsx'
 import { CitiesProvider } from './context/CitiesContext.jsx'
 
-console.log(import.meta.env.DEV, import.meta.env.VITE_BASE_URL)
+// console.log(import.meta.env.DEV, import.meta.env.VITE_BASE_URL)
 
 function App() {
   return (
@@ -37,9 +37,6 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-
-        <h1>hello world</h1>
-        <Link to="dashboard">go to dashboard</Link>
       </BrowserRouter>
     </CitiesProvider>
   )
