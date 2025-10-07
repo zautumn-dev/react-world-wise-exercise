@@ -83,6 +83,7 @@ export function CitiesProvider({ children }) {
   return <CitiesContext value={contextValue}>{children}</CitiesContext>
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useCitiesContext() {
   const context = useContext(CitiesContext)
   if (!context) throw new Error('useCities must be used within cities')

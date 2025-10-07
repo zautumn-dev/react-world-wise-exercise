@@ -1,12 +1,31 @@
 import styles from './Login.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PageNav from '../components/pageNav/index.jsx'
+import Button from '../components/Button/index.jsx'
+import { useAuthContext } from '../context/AuthContext.jsx'
+import { useNavigate } from 'react-router'
 
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
 
   const [email, setEmail] = useState('jack@example.com')
   const [password, setPassword] = useState('qwerty')
+
+  const navigate = useNavigate()
+
+  const { login, isAuth } = useAuthContext()
+
+  async function toLogin(e) {
+    e.preventDefault()
+
+    const loginState = await login({ email, password })
+    if (!loginState) return
+  }
+
+  useEffect(() => {
+    console.log(window.history.state, 'window.history.state')
+    if (isAuth) navigate('/app', { replace: true })
+  }, [isAuth, navigate])
 
   return (
     <main className={styles.login}>
@@ -23,7 +42,9 @@ export default function Login() {
         </div>
 
         <div>
-          <button>Login</button>
+          <Button type="primary" handler={toLogin}>
+            Login
+          </Button>
         </div>
       </form>
     </main>
