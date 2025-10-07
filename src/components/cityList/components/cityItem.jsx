@@ -9,7 +9,12 @@ function CityItem({ city }) {
   // eslint-disable-next-line react/prop-types
   const { cityName, emoji, date, id, position } = city
 
-  const { currentCity } = useCitiesContext()
+  const { currentCity, delCity } = useCitiesContext()
+
+  async function handleDelete(e) {
+    e.preventDefault()
+    await delCity(city.id)
+  }
 
   return (
     <li>
@@ -19,7 +24,9 @@ function CityItem({ city }) {
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>{formatDate(date)}</time>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button className={styles.deleteBtn} onClick={handleDelete}>
+          &times;
+        </button>
       </Link>
     </li>
   )

@@ -46,6 +46,19 @@ export function CitiesProvider({ children }) {
 
       setCities(cities => [...cities, newCity])
     },
+
+    // del city
+    delCity: async function (id) {
+      const [err, response] = await asyncHandler(fetch(`${import.meta.env.VITE_BASE_URL}/cities/${id}`), {
+        method: 'DELETE',
+      })
+
+      if (err) {
+        return console.error(err.message)
+      }
+
+      setCities(cs => cs.filter(c => c.id !== id))
+    },
   }
 
   // cities
