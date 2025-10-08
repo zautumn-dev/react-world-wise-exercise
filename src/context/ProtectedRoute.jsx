@@ -9,8 +9,9 @@ export function ProtectedRouteProvider({ children }) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!isAuth) navigate('/')
+    if (!isAuth) navigate('/login')
   }, [isAuth, navigate])
+
   return <ProtectedRoute value={{}}>{children}</ProtectedRoute>
 }
 

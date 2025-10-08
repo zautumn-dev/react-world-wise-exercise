@@ -23,8 +23,8 @@ export default function Login() {
   }
 
   useEffect(() => {
-    console.log(window.history.state, 'window.history.state')
-    if (isAuth) navigate('/app', { replace: true })
+    console.log(11, isAuth)
+    if (isAuth) navigate('/app/cities', { replace: true })
   }, [isAuth, navigate])
 
   return (
